@@ -32,14 +32,25 @@ if (uploaded_file is not None) and (len(col)>0) and (btn == 1):
     accounts = user_l
     result_l = []
     for screen_name, result in bom.check_accounts_in(accounts):
-        try:
-            result_l.append(result['cap']['universal'])
-        except:
-            result_l.append('error')
+        if result['user']['majority_lang'] == 'en':
+            try:
+                result_l.append(result['display_scores']['english']['overall'])
+                cap_l.append(result['cap']['english'])
+            except:
+                cap_l.append('error')
+                result_l.append('error')
+        else:
+            try:
+                result_l.append(result['display_scores']['universal']['overall'])
+                cap_l.append(result['cap']['universal'])
+            except:
+                cap_l.append('error')
+                result_l.append('error')
         if len(result_l) % 10 == 0:
             st.write('successfully checked', len(result_l), 'accounts')
 
     df['botometer_result'] = result_l
+    df['CAP'] = cap_l
 
     btn = st.download_button(
         label="Download data as CSV",
