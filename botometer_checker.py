@@ -56,7 +56,7 @@ if (uploaded_file is not None) and (len(col)>0) and (btn == 1):
     btn = st.download_button(
         label="Download data as CSV",
         data=convert_df_to_csv(df),
-        file_name=f"{filename.lower().replace('.csv','')}_bot_checked.csv",
+        file_name=f"{filename.lower().replace('.csv','')}_checked.csv",
         mime='text/csv',
     )
                      
