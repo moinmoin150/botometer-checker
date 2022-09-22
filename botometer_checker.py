@@ -31,6 +31,7 @@ if (uploaded_file is not None) and (len(col)>0) and (btn == 1):
 
     accounts = user_l
     result_l = []
+    cap_l = []
     for screen_name, result in bom.check_accounts_in(accounts):
         if result['user']['majority_lang'] == 'en':
             try:
