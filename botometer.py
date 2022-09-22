@@ -1,5 +1,5 @@
 import streamlit as st
-import botometer
+import botometer as boto
 import pandas
 
 rapidapi_key = st.secrets["rapidapi_key"]
@@ -9,7 +9,7 @@ twitter_app_auth = {
     'access_token': st.secrets["access_token"],
     'access_token_secret': st.secrets["access_token_secret"]
   }
-bom = botometer.Botometer(wait_on_ratelimit=True,
+bom = boto.Botometer(wait_on_ratelimit=True,
                           rapidapi_key=rapidapi_key,
                           **twitter_app_auth)
 
