@@ -20,7 +20,7 @@ bom = boto.Botometer(wait_on_ratelimit=True,
 st.markdown("# Botometer Checker")
 uploaded_file = st.file_uploader("Please upload a CSV spreadsheet with usernames or user IDs in a column (either with or without @ is okay)", type=["csv"])
 col = st.text_input('Enter the name of the column with usernames or user iDs (case sensitive)')
-st.write("* press enter and wait... *")
+st.write("\* press enter and wait... *")
 
 if (uploaded_file is not None) and (len(col)>0):
     df = pd.read_csv(uploaded_file)
