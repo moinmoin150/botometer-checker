@@ -1,4 +1,4 @@
 streamlit
 pandas
 botometer==1.6
-tweepy
+tweepy==3.10.0
