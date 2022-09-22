@@ -20,11 +20,12 @@ bom = boto.Botometer(wait_on_ratelimit=True,
 st.markdown("# Botometer Checker")
 uploaded_file = st.file_uploader("Please upload a CSV spreadsheet with usernames or user IDs in a column (either with or without @ is okay)", type=["csv"])
 col = st.text_input('Enter the name of the column with usernames or user iDs (case sensitive)')
-st.write("\* press enter and wait... *")
+btn = st.button("Run!")
 
-if (uploaded_file is not None) and (len(col)>0):
+if (uploaded_file is not None) and (len(col)>0) and (btn == 1):
     df = pd.read_csv(uploaded_file)
-    st.write("successfully uploaded:", uploaded_file.name)
+    filename = uploaded_file.name
+    st.write("successfully uploaded:", filename)
 
     user_l = df[col].to_list()
 
@@ -40,9 +41,10 @@ if (uploaded_file is not None) and (len(col)>0):
 
     df['botometer_result'] = result_l
 
-    st.download_button(
+    btn = st.download_button(
         label="Download data as CSV",
         data=convert_df_to_csv(df),
-        file_name=f'{uploaded_file.name}_bot_checked.csv',
+        file_name=f'{filename.lower().replace('.csv',''}_bot_checked.csv',
         mime='text/csv',
     )
+                     
