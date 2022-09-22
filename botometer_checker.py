@@ -1,6 +1,6 @@
 import streamlit as st
 import botometer as boto
-import pandas
+import pandas as pd
 
 rapidapi_key = st.secrets["rapidapi_key"]
 twitter_app_auth = {
@@ -17,7 +17,7 @@ st.markdown("# Botometer Checker")
 uploaded_file = st.file_uploader("Please upload a CSV spreadsheet with usernames or user IDs in a column (either with or without @ is okay)", type=["csv"])
 col = st.text_input('Enter the name of the column with usernames or user iDs')
 
-if uploaded_file is not None:
+if (uploaded_file is not None) and (len(col)>0):
     df = pd.read_csv(uploaded_file)
     st.write("successfully uploaded:", uploaded_file.name)
 
